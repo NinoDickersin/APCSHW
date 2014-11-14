@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class CollapseDuplicates{
+public class ArrayListMethods{
 
     public static void collapseDuplicates(ArrayList<Integer> L){
 	for (int i = 0; i < L.size() - 1; i ++){
@@ -8,6 +8,13 @@ public class CollapseDuplicates{
 		L.remove(i + 1);
 		i--;
 	    }
+	}
+    }
+
+public static void randomize(ArrayList<Integer> L){
+	Random rand = new Random();
+	for (int i = 0; i < L.size(); i++){
+	    L.add(L.remove(rand.nextInt(L.size())));
 	}
     }
 
@@ -28,6 +35,12 @@ public class CollapseDuplicates{
 	L.add(0);
 	System.out.println(L);
 	collapseDuplicates(L);
+	System.out.println(L);
+	randomize(L);
+	System.out.println(L);
+	randomize(L);
+	System.out.println(L);
+	randomize(L);
 	System.out.println(L);
     }
 }
