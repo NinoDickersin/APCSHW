@@ -34,6 +34,32 @@ public class WordGrid{
 	return a;
     }
 
+    public boolean spotCheck(char value, int r, int c){
+	if (data[r][c] == ' ' || data[r][c] == value){
+	    return true;
+	}
+	return false;
+    }
+
+    public String reverseString(String str){
+	String s = "";
+	for(int i = 0; i < str.length() - 1; i ++){
+	    s += str.substring(i, i+1);
+	}
+	return s;
+    }
+
+    public boolean wordCheck(String word, int row, int col){
+	for (int i = 0; i < word.length(); i ++){
+	    if (!this.spotCheck(word.charAt(i), row, col)){
+		return false;
+	    }else{
+		col ++;
+	    }
+	}
+	return true;
+    }
+
     /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from left to right, must fit on the WordGrid, and must
      *have a corresponding letter to match any letters that it overlaps.
@@ -44,25 +70,70 @@ public class WordGrid{
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
-    public boolean spotCheck(char value, int r, int c){
-	if (data[r][c] == ' ' || data[r][c] == value){
-	    return true;
-	}
-	return false;
-    }
-
     public boolean addWordHorizontal(String word,int row, int col){
 	for (int i = 0; i < word.length(); i ++){
 	    if (!this.spotCheck(word.charAt(i), row, col)){
 		return false;
-	    }else{
-		col += 1;
 	    }
+	    col ++;
 	}
-	col -= 1;
+	col --;
 	for(int j = word.length() - 1; j >= 0; j--){
 	    data[row][col] = word.charAt(j);
-	    col -= 1;
+	    col --;
+	}
+	return true;
+    }
+    /** Adds a word in the downward vertical direction. */ 
+    public boolean addWordVertical(String word, int row, int col){
+	for (int i = 0; i < word.length(); i ++){
+	    if (!this.spotCheck(word.charAt(i), row, col)){
+		return false;
+	    }
+	    row ++;
+	}
+	row --;
+	for(int j = word.length() - 1; j >= 0; j--){
+	    data[row][col] = word.charAt(j);
+	    row --;
+	}
+	return true;
+    }
+    /** Adds a word in the downward diagonal direction. */
+    public boolean addWordDiagonalDown(String word, int row, int col){
+	for (int i = 0; i < word.length(); i ++){
+	    if (!this.spotCheck(word.charAt(i), row, col)){
+		return false;
+	    }
+	    row ++;
+	    col ++;
+	    
+	}
+	row --;
+	col --;
+	for(int j = word.length() - 1; j >= 0; j--){
+	    data[row][col] = word.charAt(j);
+	    row --;
+	    col --;
+	}
+	return true;
+    }
+    /** Adds a word in the upward diagonal direction. */
+    public boolean addWordDiagonalUp(String word, int row, int col){
+	for (int i = 0; i < word.length(); i ++){
+	    if (!this.spotCheck(word.charAt(i), row, col)){
+		return false;
+	    }
+	    row --;
+	    col ++;
+	    
+	}
+	row ++;
+	col --;
+	for(int j = word.length() - 1; j >= 0; j--){
+	    data[row][col] = word.charAt(j);
+	    row ++;
+	    col --;
 	}
 	return true;
     }
@@ -73,14 +144,19 @@ public class WordGrid{
 	System.out.println(a);
 	System.out.println(a.addWordHorizontal("swaq", 1, 1));
 	//true
-	System.out.println(a.addWordHorizontal("baby", 1, 0));
-	//false
+	System.out.println(a.addWordVertical("baby", 0, 3));
+	//true
 	System.out.println(a.addWordHorizontal("swaq", 1, 1));
 	//true
 	System.out.println(a.addWordHorizontal("apple", 4, 0));
 	//true
+	System.out.println(a.addWordDiagonalDown("hat", 0, 2));
+	//true
+	System.out.println(a.addWordDiagonalUp("art", 4, 0));
+	//true
 	System.out.println(a);
 	//swaq
+	//baby
 	//apple
 	a.clear();
 	System.out.println(a);
