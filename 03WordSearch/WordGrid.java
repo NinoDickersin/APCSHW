@@ -31,22 +31,28 @@ public class WordGrid{
 	data = new char[rows][cols];
 	words = new ArrayList<String>(0);
 	this.clear();
-	this.wordsGet();
     }
     /**Gets a list of words from a .txt file and places them in the ArrayList "words".
      */
 
+    /*
     public void wordsGet() throws FileNotFoundException{
-	File infile = new File("Words.txt");
+	File infile = new File("c:\\Words.txt");
 	System.out.println(infile.exists());
 	System.out.println(infile.canRead());
+	try{
 	Scanner in = new Scanner(infile);
-	while(in.hasNextLine()){
-            words.add(in.nextLine());
 	}
+	catch (FileNotFoundException e){
+	    System.out.println ("Exception");
+	}
+	//while(in.hasNextLine()){
+	//  words.add(in.nextLine());
+	//	}
     }
+    */
     /**Set all values in the WordGrid to spaces ' '*/
-    private void clear(){
+    public void clear(){
 	for (int i = 0; i < data.length; i ++){
 	    for(int j = 0; j < data[i].length; j ++){
 		data[i][j] = ' ';
@@ -90,8 +96,6 @@ public class WordGrid{
 	return s;
     }
     
-    // public boolean wordCheck(String word, int row, int col){
-    // }
 
     /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from left to right, must fit on the WordGrid, and must
@@ -191,28 +195,11 @@ public class WordGrid{
 	return true;
     }
     /** Gets a word from the ArrayList.
-     */
+     
 
     public String retrieve(int index){
 	System.out.println(words);
 	return words.get(index);
     }
-
-    public static void main(String[]args){
-	WordGrid a = new WordGrid(5,5);
-	a.clear();
-	System.out.println(a);
-	System.out.println(a.retrieve(0));
-	/*
-	a.add(a.retrieve(0), 0, 0, 0);
-	a.add(a.retrieve(1), 2, 2, 3);
-	a.add(a.retrieve(2), 4, 4, 6);
-	a.add(a.retrieve(3), 4, 4, 7);
-	a.add(a.retrieve(4), 0, 0, 0);
-	a.add(a.retrieve(9), 1, 1, 4);
-	*/
-	a.clear();
-	System.out.println(a);
-    }
-
+    */
 }
