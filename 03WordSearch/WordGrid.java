@@ -31,18 +31,27 @@ public class WordGrid{
 	data = new char[rows][cols];
 	words = new ArrayList<String>(0);
 	this.clear();
+	this.wordsGet();
     }
-    /**Gets a list of words from a .txt file and places them in the ArrayList "words".
-     */
+    /**Gets a list of words from a .txt file and places them in the ArrayList
+       "words".
+    */
 
-    public void wordsGet() throws FileNotFoundException{
-        File text = new File("C:/Users/NinoDickersin/Desktop/Words.txt");
-        Scanner scnr = new Scanner(text);
-	while(scnr.hasNextLine()){
-	    words.add(scnr.nextLine());
-	}
-	System.out.println(words);
+    public void wordsGet(){
+	String s = "a";
+	try {
+	    FileReader f = new FileReader("Words.txt");
+	    BufferedReader b = new BufferedReader(f);
+ 
+	    while(s != null) {
+		s = b.readLine();
+		if (s != null)
+		    words.add(s);
+            }
+        }
+	catch (IOException e) {}
     }
+
     /**Set all values in the WordGrid to spaces ' '*/
     public void clear(){
 	for (int i = 0; i < data.length; i ++){
