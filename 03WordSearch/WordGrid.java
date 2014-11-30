@@ -3,6 +3,8 @@ import java.util.*;
 public class WordGrid{
     private char[][]data;
     private ArrayList<String> words;
+    private Random rand;
+    private ArrayList<String> successfulWords;
     private int[][] directionMap = {
 	//0
 	{0,1},
@@ -30,6 +32,7 @@ public class WordGrid{
     public WordGrid(int rows,int cols){
 	data = new char[rows][cols];
 	words = new ArrayList<String>(0);
+	successfulWords = new ArrayList<String>(0);
 	this.clear();
 	this.wordsGet();
     }
@@ -128,10 +131,37 @@ public class WordGrid{
 	return true;
     }
 
-    /** Gets a word from the ArrayList.
+    /** Adds all the words from the ArrayList into the WordGrid.
      */
 
-    public String retrieve(int index){
-	return words.get(index);
+    public void addAllWords(){
+	Boolean x = false;
+	rand = new Random();
+	int row = data.length;
+	int col = data[0].length;
+	for(int i = 0; i < words.size(); i ++){
+	    int j = 0;
+	    while(!x || j < 10){
+		try{
+		    x = this.add(words.get(i),rand.nextInt(row),rand.nextInt(col), rand.nextInt(9));
+		}catch(ArrayIndexOutOfBoundsException e){}
+		if(x){
+		    successfulWords.add(words.get(i));
+		}
+		j++;
+	    }
+	    x = false;
+	}
+    }
+
+    public String findWordList(){
+	String s = "Find these words:\n";
+	for (int i = 0; i < successfulWords.size(); i++){
+	    s += successfulWords.get(i);
+	    if (i % 4 == 0){
+		s+="\n";
+	    }
+	}
+	return s;
     }
 }
