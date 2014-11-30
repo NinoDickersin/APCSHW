@@ -35,22 +35,14 @@ public class WordGrid{
     /**Gets a list of words from a .txt file and places them in the ArrayList "words".
      */
 
-    /*
     public void wordsGet() throws FileNotFoundException{
-	File infile = new File("c:\\Words.txt");
-	System.out.println(infile.exists());
-	System.out.println(infile.canRead());
-	try{
-	Scanner in = new Scanner(infile);
+        File text = new File("C:/Users/NinoDickersin/Desktop/Words.txt");
+        Scanner scnr = new Scanner(text);
+	while(scnr.hasNextLine()){
+	    words.add(scnr.nextLine());
 	}
-	catch (FileNotFoundException e){
-	    System.out.println ("Exception");
-	}
-	//while(in.hasNextLine()){
-	//  words.add(in.nextLine());
-	//	}
+	System.out.println(words);
     }
-    */
     /**Set all values in the WordGrid to spaces ' '*/
     public void clear(){
 	for (int i = 0; i < data.length; i ++){
@@ -126,80 +118,11 @@ public class WordGrid{
 	}
 	return true;
     }
-    
-    public boolean addWordHorizontal(String word,int row, int col){
-	for (int i = 0; i < word.length(); i ++){
-	    if (!this.spotCheck(word.charAt(i), row, col)){
-		return false;
-	    }
-	    col ++;
-	}
-	col --;
-	for(int j = word.length() - 1; j >= 0; j--){
-	    data[row][col] = word.charAt(j);
-	    col --;
-	}
-	return true;
-    }
-    /** Adds a word in the downward vertical direction. */ 
-    public boolean addWordVertical(String word, int row, int col){
-	for (int i = 0; i < word.length(); i ++){
-	    if (!this.spotCheck(word.charAt(i), row, col)){
-		return false;
-	    }
-	    row ++;
-	}
-	row --;
-	for(int j = word.length() - 1; j >= 0; j--){
-	    data[row][col] = word.charAt(j);
-	    row --;
-	}
-	return true;
-    }
-    /** Adds a word in the downward diagonal direction. */
-    public boolean addWordDiagonalDown(String word, int row, int col){
-	for (int i = 0; i < word.length(); i ++){
-	    if (!this.spotCheck(word.charAt(i), row, col)){
-		return false;
-	    }
-	    row ++;
-	    col ++;
-	    
-	}
-	row --;
-	col --;
-	for(int j = word.length() - 1; j >= 0; j--){
-	    data[row][col] = word.charAt(j);
-	    row --;
-	    col --;
-	}
-	return true;
-    }
-    /** Adds a word in the upward diagonal direction. */
-    public boolean addWordDiagonalUp(String word, int row, int col){
-	for (int i = 0; i < word.length(); i ++){
-	    if (!this.spotCheck(word.charAt(i), row, col)){
-		return false;
-	    }
-	    row --;
-	    col ++;
-	    
-	}
-	row ++;
-	col --;
-	for(int j = word.length() - 1; j >= 0; j--){
-	    data[row][col] = word.charAt(j);
-	    row ++;
-	    col --;
-	}
-	return true;
-    }
+
     /** Gets a word from the ArrayList.
-     
+     */
 
     public String retrieve(int index){
-	System.out.println(words);
 	return words.get(index);
     }
-    */
 }
