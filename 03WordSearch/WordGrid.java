@@ -24,10 +24,9 @@ public class WordGrid{
 	{-1,1}
 	//8
     };
-    /**Initialize the grid to the size specified and fill all of the positions
-     *with spaces.
-     *@param row is the starting height of the WordGrid
-     *@param col is the starting width of the WordGrid
+    /** Initializes the WordGrid to a specific size, initializes the words and     *successfulWords ArrayLists, sets all the coordinates of the WordGrid to
+     *spaces, retrieves an ArrayList of words for use in the grid, and 
+     *initializes the Random seed for the WordGrid.
      */
     public WordGrid(int rows,int cols){
 	data = new char[rows][cols];
@@ -35,15 +34,22 @@ public class WordGrid{
 	successfulWords = new ArrayList<String>(0);
 	this.clear();
 	this.wordsGet();
+	this.setSeed(0);
     }
-    /**Gets a list of words from a .txt file and places them in the ArrayList
-       "words".
-    */
+    /**Sets the random seed of the Random object rand.
+     */
+    public void setSeed(long seed){
+	rand = new Random(seed);
+    }
 
-    public void wordsGet(){
+    /**Gets a list of words from a .txt file and places them in the ArrayList
+     *words.
+     */
+
+    public void loadWordsFromFile(String fileName, boolean fillRandomLetters){
 	String s = "a";
 	try {
-	    FileReader f = new FileReader("Words.txt");
+	    FileReader f = new FileReader(filename);
 	    BufferedReader b = new BufferedReader(f);
  
 	    while(s != null) {
@@ -55,7 +61,8 @@ public class WordGrid{
 	catch (IOException e) {}
     }
 
-    /**Set all values in the WordGrid to spaces ' '*/
+    /**Sets all values in the WordGrid to spaces.
+     */
     public void clear(){
 	for (int i = 0; i < data.length; i ++){
 	    for(int j = 0; j < data[i].length; j ++){
@@ -64,8 +71,7 @@ public class WordGrid{
 	}
     }
 
-    /**The proper formatting for a WordGrid is created in the toString.
-     *@return a String with each character separated by spaces, and each row
+    /**Returns a String with each character separated by spaces, and each row
      *separated by newlines.
      */
     public String toString(){
@@ -87,29 +93,12 @@ public class WordGrid{
 	    return true;
 	}
 	return false;
-    }
-    
-    /**Reverses a given string.
-     */
+    }  
 
-    public String reverseString(String str){
-	String s = "";
-	for(int i = 0; i < str.length() - 1; i ++){
-	    s += str.substring(i, i+1);
-	}
-	return s;
-    }
-    
-
-    /**Attempts to add a given word to the specified position of the WordGrid.
-     *The word is added from left to right, must fit on the WordGrid, and must
-     *have a corresponding letter to match any letters that it overlaps.
-     *
-     *@param word is any text to be added to the word grid.
-     *@param row is the vertical locaiton of where you want the word to start.
-     *@param col is the horizontal location of where you want the word to start.
-     *@return true when the word is added successfully. When the word doesn't fit,
-     *or there are overlapping letters that do not match, then false is returned.
+    /**Attempts to add a specific string to the WordGrid. Returns true if the      *addition was successful. Returns false if the addition is unsuccessful.
+     *Row and col determine the starting point of the word. Direction 
+     *determines the manner in which the word travels across the grid using 
+     *the slopes in directionMap.
      */
     public boolean add(String word, int row, int col, int direction){
 	int colChange = directionMap[direction][0];
@@ -136,7 +125,6 @@ public class WordGrid{
 
     public void addAllWords(){
 	Boolean x;
-	rand = new Random();
 	int row = data.length;
 	int col = data[0].length;
 	for(int i = 0; i < words.size(); i ++){
@@ -151,7 +139,7 @@ public class WordGrid{
 	    }
 	}
     }
-    /* Returns all the words in the WordGrid puzzle.
+    /** Returns all the words successfully placed in the WordGrid puzzle.
      */
     public String wordsInPuzzle(){
 	String s = "Find these words:\n";
