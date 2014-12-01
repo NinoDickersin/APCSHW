@@ -135,29 +135,28 @@ public class WordGrid{
      */
 
     public void addAllWords(){
-	Boolean x = false;
+	Boolean x;
 	rand = new Random();
 	int row = data.length;
 	int col = data[0].length;
 	for(int i = 0; i < words.size(); i ++){
-	    int j = 0;
-	    while(!x || j < 10){
+	    x = false;
+	    for(int j = 0; !x && j < 10; j++){
 		try{
 		    x = this.add(words.get(i),rand.nextInt(row),rand.nextInt(col), rand.nextInt(9));
 		}catch(ArrayIndexOutOfBoundsException e){}
 		if(x){
 		    successfulWords.add(words.get(i));
 		}
-		j++;
 	    }
-	    x = false;
 	}
     }
-
-    public String findWordList(){
+    /* Returns all the words in the WordGrid puzzle.
+     */
+    public String wordsInPuzzle(){
 	String s = "Find these words:\n";
 	for (int i = 0; i < successfulWords.size(); i++){
-	    s += successfulWords.get(i);
+	    s += successfulWords.get(i) + " ";
 	    if (i % 4 == 0){
 		s+="\n";
 	    }
