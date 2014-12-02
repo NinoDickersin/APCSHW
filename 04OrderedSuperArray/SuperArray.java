@@ -26,7 +26,7 @@ public class SuperArray{
 	if (index < 0 || index > this.size()){
 	    throw new IndexOutOfBoundsException("Index out of bounds.");
 	}
-	this.resize(this.size() + 1);
+	this.resize(this.size() + e.length());
 	for (int i = this.size(); i > index; i --){
 	    this.set(i - 1, this.get(i));
 	}
@@ -74,6 +74,14 @@ public class SuperArray{
 	}
 	String a = new String();
 	a = this.get(index);
+	while(index < this.size() - 1){
+	    array[index] = array[index + 1];
+	    index++;
+	}
+	current--;
+	if(current < array.length / 4){
+	    resize(array.length / 2);
+	}
 	return a;
     }
 
@@ -82,10 +90,9 @@ public class SuperArray{
 	System.out.println(a);
 	System.out.println(a.size());
 	a.set(0, "Start");
-	a.set(1, 1);
-	a.set(2, 'b');
-	a.set(3, 3.0);
+	a.set(2, "b");
 	a.set(4, "4");
+	System.out.println(a.remove(2));
 	System.out.println(a.get(0));
 	System.out.println(a.get(4));
 	a.resize(5);
@@ -94,13 +101,6 @@ public class SuperArray{
 	System.out.println(a.size());
 	a.clear();
 	System.out.println(a);
-	a.add(0, "Yay!");
-	System.out.println(a.get(0));
 	System.out.println(a.size());
-	System.out.println(a);
-	a.remove(0);
-	System.out.println(a);
-	a.set(999, "LML");
-	System.out.println(a);
     }
 }
