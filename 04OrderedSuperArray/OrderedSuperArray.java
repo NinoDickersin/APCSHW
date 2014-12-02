@@ -14,18 +14,11 @@ public class OrderedSuperArray extends SuperArray{
     }
 
     public void add(String e){
-	this.resize(this.size() + 1);
-	int i = this.size();
-	this.set(i - 1, "");
-	System.out.println("check");
-	while(i > 1 && e.compareTo(this.get(i - 1)) <= 0){
-	    this.set(i - 1, this.get(i - 2));
-	    i--;
-	    System.out.println(i);
+	int index = size();
+	while( index > 0 && get((index-1).compareTo(e) > 0 )){
+	    index --;
 	}
-	System.out.println("check");
-	this.set(i - 1, e); 
-	System.out.println("check");
+	super.add(index, e);
     }
     
     public void add(int index, String e){
