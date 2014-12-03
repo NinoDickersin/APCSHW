@@ -1,3 +1,4 @@
+import java.util.*;
 public class SuperArray{
     private String[] array;
     private int current;
@@ -7,7 +8,17 @@ public class SuperArray{
     }
 
     public SuperArray(int size){
+	this(size, false);
+    }
+
+    public SuperArray(int size, boolean fill){
+	Random r = new Random(123);
 	array = new String[size];
+	if(fill){
+	    for(int i = 0; i < array.length; i ++){
+		array[i] = "" + (char)('a' + r.nextInt(26));
+	    }
+	}
     }
     
     public String toString(){
@@ -116,5 +127,6 @@ public class SuperArray{
 	a.clear();
 	System.out.println(a);
 	System.out.println(a.size());
+	
     }
 }

@@ -1,0 +1,11 @@
+public static void main (String[]args){
+    SuperArray a = new SuperArray(100);
+    a.insertionSort();
+    String[] b = new String[100];
+    Random c = new Random(123);
+    for(int i = 0; i < b.length; i ++){
+	b[i] = (String)((char)('a' + c.nextInt(26)));
+    }
+    b.sort();
+    System.out.println(a == b);
+}
