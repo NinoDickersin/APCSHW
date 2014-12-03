@@ -84,6 +84,20 @@ public class SuperArray{
 	}
 	return a;
     }
+    public void insertionSort(){
+	String e = "";
+	for(int i = 0; i < size(); i ++){
+	    if(get(i).compareTo(get(i - 1)) > 0){
+		e = get(i);
+		int j = i;
+		while (e.compareTo(get(j - 1)) > 0){
+		    set(j, get(j - 1));
+		    j--;
+		}
+		set(j, e);
+	    }
+	} 
+    }
 
     public static void main(String[]args){
 	SuperArray a = new SuperArray();

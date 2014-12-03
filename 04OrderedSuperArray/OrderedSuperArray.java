@@ -15,7 +15,7 @@ public class OrderedSuperArray extends SuperArray{
 
     public void add(String e){
 	int index = size();
-	while( index > 0 && get((index-1).compareTo(e) > 0 )){
+	while( index > 0 && get(index-1).compareTo(e) > 0 ){
 	    index --;
 	}
 	super.add(index, e);
@@ -44,7 +44,7 @@ public class OrderedSuperArray extends SuperArray{
 	a.set(2,"carrot");
 	a.set(3,"dragonfruit");
 	System.out.println(a);
-	a.add("papaya");
+	a.add("avocado");
 	System.out.println(a);
     }
 }
