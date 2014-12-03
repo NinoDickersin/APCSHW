@@ -32,9 +32,8 @@ public class WordGrid{
 	data = new char[rows][cols];
 	words = new ArrayList<String>(0);
 	successfulWords = new ArrayList<String>(0);
+	rand = new Random();
 	this.clear();
-	this.wordsGet();
-	this.setSeed(0);
     }
     /**Sets the random seed of the Random object rand.
      */
@@ -42,14 +41,16 @@ public class WordGrid{
 	rand = new Random(seed);
     }
 
-    /**Gets a list of words from a .txt file and places them in the ArrayList
-     *words.
+    /**Gets a list of words from a .txt file(fileName) and places them in the 
+     *ArrayList words. Runs addAllWords() to complete the wordGrid. The
+     *boolean determines whether or not random letters are placed in the
+     *wordGrid.
      */
 
     public void loadWordsFromFile(String fileName, boolean fillRandomLetters){
 	String s = "a";
 	try {
-	    FileReader f = new FileReader(filename);
+	    FileReader f = new FileReader(fileName);
 	    BufferedReader b = new BufferedReader(f);
  
 	    while(s != null) {
@@ -59,6 +60,23 @@ public class WordGrid{
             }
         }
 	catch (IOException e) {}
+	addAllWords();
+	if(fillRandomLetters){
+	    randomLetterer();
+	}
+    }
+
+    /**Fills any empty spaces in the wordGrid with random letters.
+     */
+
+    public void randomLetterer(){
+	for(int i = 0; i < data.length; i ++){
+	    for(int j = 0; j < data[i].length; j++){
+		if(spotCheck(i, j)){
+		    data[i][j] = (char)('a' + rand.nextInt(26));
+		}
+	    }
+	}
     }
 
     /**Sets all values in the WordGrid to spaces.
@@ -93,7 +111,14 @@ public class WordGrid{
 	    return true;
 	}
 	return false;
-    }  
+    }
+    //spotCheck with no given value(for randomLetterer())
+    public boolean spotCheck(int r, int c){
+	if(data[r][c] == ' '){
+	    return true;
+	}
+	return false;
+    }
 
     /**Attempts to add a specific string to the WordGrid. Returns true if the      *addition was successful. Returns false if the addition is unsuccessful.
      *Row and col determine the starting point of the word. Direction 
@@ -129,7 +154,7 @@ public class WordGrid{
 	int col = data[0].length;
 	for(int i = 0; i < words.size(); i ++){
 	    x = false;
-	    for(int j = 0; !x && j < 10; j++){
+	    for(int j = 0; !x && j < 5; j++){
 		try{
 		    x = this.add(words.get(i),rand.nextInt(row),rand.nextInt(col), rand.nextInt(9));
 		}catch(ArrayIndexOutOfBoundsException e){}
@@ -140,12 +165,13 @@ public class WordGrid{
 	}
     }
     /** Returns all the words successfully placed in the WordGrid puzzle.
+     *  Words appear in rows of length 6 each.
      */
     public String wordsInPuzzle(){
-	String s = "Find these words:\n";
+	String s = "";
 	for (int i = 0; i < successfulWords.size(); i++){
 	    s += successfulWords.get(i) + " ";
-	    if (i % 4 == 0){
+	    if (i != 0 && i % 6 == 0){
 		s+="\n";
 	    }
 	}
