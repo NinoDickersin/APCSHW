@@ -1,0 +1,2 @@
+1. Create a superArray of size 100 that is filled with random Strings, and sort it with insertionSort(). Compare that to an Array of the same size that is also filled with random Strings and sorted using Arrays.sort(). I made sure to use the same Random seed(123) so that the superArray and the Array would have the same strings.
+2. Ran out of time; will finish @ home.
