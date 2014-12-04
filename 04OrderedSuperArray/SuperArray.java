@@ -67,7 +67,7 @@ public class SuperArray{
     }
     
     public String get(int index){
-	if (index < 0 || index >= this.size()){
+	if (index < 0 || index >= size()){
 	    throw new IndexOutOfBoundsException("Index out of bounds.");
 	}
 	return array[index];
@@ -97,11 +97,11 @@ public class SuperArray{
     }
     public void insertionSort(){
 	String e = "";
-	for(int i = 0; i < size(); i ++){
-	    if(get(i).compareTo(get(i - 1)) > 0){
+	for(int i = 1; i < size(); i ++){
+	    if(size() > 1 && get(i).compareTo(get(i - 1)) > 0){
 		e = get(i);
 		int j = i;
-		while (e.compareTo(get(j - 1)) > 0){
+		while (e.compareTo(array[j-1])  > 0){
 		    set(j, get(j - 1));
 		    j--;
 		}
@@ -110,6 +110,14 @@ public class SuperArray{
 	} 
     }
 
+    public int find(String target){
+	for (int i = 0; i < size(); i++){
+	    if (array[i].equals(target)){
+		return i;
+	    }
+	}
+	return -1;
+    } 
     public static void main(String[]args){
 	SuperArray a = new SuperArray();
 	System.out.println(a);

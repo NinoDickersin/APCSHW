@@ -1,6 +1,7 @@
 import java.util.*;
 public class Driver{
     public static void main (String[]args){
+/**
 	SuperArray a = new SuperArray(100);
 	a.insertionSort();
 	String[] b = new String[100];
@@ -15,5 +16,9 @@ public class Driver{
 		break;
 	    }
 	}
+*/
+	SuperArray a = new SuperArray(10, true);
+	a.insertionSort();
+	System.out.println(a);
     }
 }
