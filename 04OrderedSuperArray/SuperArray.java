@@ -12,11 +12,10 @@ public class SuperArray{
     }
 
     public SuperArray(int size, boolean fill){
-	Random r = new Random(123);
 	array = new String[size];
 	if(fill){
 	    for(int i = 0; i < array.length; i ++){
-		array[i] = "" + (char)('a' + r.nextInt(26));
+		array[i] = "" + i;
 	    }
 	}
     }
@@ -101,9 +100,8 @@ public class SuperArray{
 	    if(size() > 1 && get(i).compareTo(get(i - 1)) > 0){
 		e = get(i);
 		int j = i;
-		while (e.compareTo(array[j-1])  > 0){
+		for (;j >= 1 && e.compareTo(array[j-1])  > 0; j --){
 		    set(j, get(j - 1));
-		    j--;
 		}
 		set(j, e);
 	    }
@@ -118,6 +116,19 @@ public class SuperArray{
 	}
 	return -1;
     } 
+
+    public void selectionSort(){
+	String s = "";
+	for (int i = 0; i < size(); i ++){
+	    s = ""+i;
+	    for(int j = i + 1; j < size(); j++){
+		if (s.compareTo(""+j) < 0){
+		    s = ""+j;
+		}
+	    }
+	    i = Integer.parseInt(s);
+	}
+    }
     public static void main(String[]args){
 	SuperArray a = new SuperArray();
 	System.out.println(a);

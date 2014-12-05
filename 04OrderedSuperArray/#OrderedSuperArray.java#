@@ -37,7 +37,7 @@ public class OrderedSuperArray extends SuperArray{
     }
 
     public int find(String target){
-
+	int c = size()/2;
     }
 
 

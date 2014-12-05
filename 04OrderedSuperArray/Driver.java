@@ -1,24 +1,23 @@
 import java.util.*;
 public class Driver{
     public static void main (String[]args){
-/**
-	SuperArray a = new SuperArray(100);
-	a.insertionSort();
-	String[] b = new String[100];
-	Random c = new Random(123);
-	for(int i = 0; i < b.length; i ++){
-	    b[i] = "" + (char)('a' + c.nextInt(26));
-	}
-	Arrays.sort(b);
-	for(int i = 0; i < b.length; i++){
-	    if( !(a.get(i) == b[i])){
-		System.out.println("Sorted incorrectly.");
-		break;
+	if(args[0].equals("select")){
+	    SuperArray a = new SuperArray(100000, true);
+	    a.selectionSort();
+	    System.out.println("Sorted!");
+	}else if (args[0].equals("insert")){
+	    SuperArray a = new SuperArray(100000, true);
+	    a.insertionSort();
+	    System.out.println("Sorted!");
+	}else{
+	    String[] a = new String[100000];
+	    for(int i = 0; i < a.length; i ++){
+		a[i] = "" + i;
 	    }
+	    Arrays.sort(a);
+	    System.out.println("Sorted!");
 	}
-*/
-	SuperArray a = new SuperArray(10, true);
-	a.insertionSort();
-	System.out.println(a);
+
+
     }
 }
