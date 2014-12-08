@@ -2,7 +2,7 @@ import java.util.*;
 public class Driver{
     public static void main (String[]args){
 	if(args[0].equals("select")){
-	    SuperArray a = new SuperArray(100000, true);
+	    SuperArray a = new SuperArray(100, true);
 	    a.selectionSort();
 	    System.out.println("Sorted!");
 	}else if (args[0].equals("insert")){

@@ -36,6 +36,10 @@ public class OrderedSuperArray extends SuperArray{
 	}
     }
 
+    public int find(String target){
+	int c = size()/2;
+    }
+
 
     public static void main(String[]args){
 	OrderedSuperArray a = new OrderedSuperArray(4);

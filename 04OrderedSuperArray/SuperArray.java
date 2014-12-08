@@ -118,15 +118,22 @@ public class SuperArray{
     } 
 
     public void selectionSort(){
-	String s = "";
-	for (int i = 0; i < size(); i ++){
-	    s = ""+i;
-	    for(int j = i + 1; j < size(); j++){
-		if (s.compareTo(""+j) < 0){
-		    s = ""+j;
+	int c, j;
+	String smallest;
+	String temp;
+	for(int i = 0; i < data.length;i++){
+	    smallest = data[i];
+	    c = i + 1;
+	    j = i;
+	    for(c < data.length - 1;c++){
+		if (data[c].compareTo(smallest) < 0){
+		    smallest = data[c];
+		    j = c;
 		}
 	    }
-	    i = Integer.parseInt(s);
+	    temp = data[i];
+	    data[i] = smallest;
+	    data[j] = temp;
 	}
     }
     public static void main(String[]args){
