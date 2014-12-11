@@ -9,7 +9,7 @@ public class CtoF extends JFrame implements ActionListener{
     private JLabel l;
     private JTextField text;
     private JCheckBox box;
-    public void CtoF() {
+    public CtoF() {
 	this.setTitle("Celsius-Fahrenheit Converter");
 	this.setSize(600,400);
 	this.setLocation(100,100);
