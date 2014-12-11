@@ -27,7 +27,11 @@ public class CtoF extends JFrame implements ActionListener{
 	pane.add(c);
     }
     public void actionPerformed(ActionEvent e){
-	
+	if("Convert".equals(e.getActionCommand()){
+		String s = t.getText();
+		int i = Integer.parseInt(s);
+		i = i*(9/5) + 32;
+	}
     }
     l.addActionListener(this);
     l.setActionCommand();
