@@ -1,6 +1,6 @@
 import java.util.*;
 public class Driver{
-    public static void main (String[]args){
+    public static void main(String[]args){
 	if(args[0].equals("select")){
 	    SuperArray a = new SuperArray(100, true);
 	    a.selectionSort();
